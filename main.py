@@ -1,5 +1,6 @@
 import gradio as gr
 import whisper
+from translate import Translator
 
 def translator(audio_file):
 
@@ -7,7 +8,7 @@ def translator(audio_file):
     result = model.transcribe(audio_file)
     transcription = result["text"]
 
-    transcription 
+    en_transcription = Translator(to_lang="en").translate(transcription)
 
 web = gr.Interface(
     fn=translator,
