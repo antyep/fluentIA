@@ -39,6 +39,7 @@ def translator(audio_file):
         for chunk in response:
             if chunk:
                 f.write(chunk)
+    return save_file_path
 
 web = gr.Interface(
     fn=translator,
@@ -46,7 +47,7 @@ web = gr.Interface(
         sources=["microphone"],
         type="filepath"
     ),
-    outputs=[],
+    outputs=[gr.Audio()],
     title="Voice Translator",
     description="Voice Translator with IA"
 )
