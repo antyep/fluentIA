@@ -19,9 +19,8 @@ def translator(audio_file):
 
     client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
 
-    client.text_to_speech.convert(
-                response = client.text_to_speech.convert(
-            voice_id="pNInz6obpgDQGcFmaJgB",
+    response = client.text_to_speech.convert(
+            voice_id="2EiwWnXFnvU5JabPnv8n",
             optimize_streaming_latency="0",
             output_format="mp3_22050_32",
             text=en_transcription,
@@ -33,7 +32,13 @@ def translator(audio_file):
                 use_speaker_boost=True,
             ),
         )
-    )
+
+    save_file_path = "audio/en.mp3"
+
+    with open(save_file_path, "w") as f:
+        for chunk in response:
+            if chunk:
+                f.write(chunk)
 
 web = gr.Interface(
     fn=translator,
