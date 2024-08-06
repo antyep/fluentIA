@@ -30,8 +30,6 @@ def translator(audio_file):
         fr_transcription = Translator(from_lang="en", to_lang="fr").translate(transcription)
         ja_transcription = Translator(from_lang="en", to_lang="ja").translate(transcription)
         de_transcription = Translator(from_lang="en", to_lang="de").translate(transcription)
-        pt_transcription = Translator(from_lang="en", to_lang="pt").translate(transcription)
-
 
     except Exception as e:
         raise gr.Error(f"There was a mistake while creating the text: {str(e)}")
@@ -41,8 +39,6 @@ def translator(audio_file):
     print(f"Text translated to French: {fr_transcription}")
     print(f"Text translated to Japanese: {ja_transcription}")
     print(f"Text translated to German: {de_transcription}")
-    print(f"Text translated to Portuguese: {pt_transcription}")
-
 
     try:
         en_save_file_path = text_to_speech(en_transcription, "es")
@@ -50,13 +46,11 @@ def translator(audio_file):
         fr_save_file_path = text_to_speech(fr_transcription, "fr")
         ja_save_file_path = text_to_speech(ja_transcription, "ja")
         de_save_file_path = text_to_speech(de_transcription, "de")
-        pt_save_file_path = text_to_speech(pt_transcription, "pt")
-
 
     except Exception as e:
         raise gr.Error(f"There was a mistake during audio creation: {str(e)}")
 
-    return en_save_file_path, it_save_file_path, fr_save_file_path, ja_save_file_path, de_save_file_path, pt_save_file_path
+    return en_save_file_path, it_save_file_path, fr_save_file_path, ja_save_file_path, de_save_file_path
 
 def text_to_speech(text: str, language: str) -> str:
 
@@ -101,9 +95,7 @@ web = gr.Interface(
         gr.Audio(label="Italiano"),
         gr.Audio(label="Française"),
         gr.Audio(label="Japanese"),
-        gr.Audio(label="German"),
-        gr.Audio(label="Portuguese"),
-        
+        gr.Audio(label="German")
     ],
     title="Voice Translator",
     description="Voice Translator from spoken English with IA"
