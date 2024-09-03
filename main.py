@@ -25,7 +25,7 @@ def translator(audio_file):
     print(f"Original text: {transcription}")
 
     try:
-        en_transcription = Translator(from_lang="en", to_lang="es").translate(transcription)
+        es_transcription = Translator(from_lang="en", to_lang="es").translate(transcription)
         it_transcription = Translator(from_lang="en", to_lang="it").translate(transcription)
         fr_transcription = Translator(from_lang="en", to_lang="fr").translate(transcription)
         ja_transcription = Translator(from_lang="en", to_lang="ja").translate(transcription)
@@ -34,14 +34,8 @@ def translator(audio_file):
     except Exception as e:
         raise gr.Error(f"There was a mistake while creating the text: {str(e)}")
 
-    print(f"Text translated to Spanish: {en_transcription}")
-    print(f"Text translated to Italian: {it_transcription}")
-    print(f"Text translated to French: {fr_transcription}")
-    print(f"Text translated to Japanese: {ja_transcription}")
-    print(f"Text translated to German: {de_transcription}")
-
     try:
-        en_save_file_path = text_to_speech(en_transcription, "es")
+        en_save_file_path = text_to_speech(es_transcription, "es")
         it_save_file_path = text_to_speech(it_transcription, "it")
         fr_save_file_path = text_to_speech(fr_transcription, "fr")
         ja_save_file_path = text_to_speech(ja_transcription, "ja")
